@@ -59,23 +59,21 @@ const gamersRating = [];
 gamers.forEach(item => {
     let resultPoints = item.points.reduce((sum, item) => sum + item, 0);//тут пощупают reduce
     resultPoints += Math.floor(item.frags.reduce((sum, item) => sum + item, 0) * 500);
+    if(item.premium){
+        resultPoints = Math.floor(resultPoints * 1.3);
+    }
     gamersRating.push({     //тут push
         name: item.name,
         tank: item.tank,
         points: resultPoints
     })
 });
-gamersRating.sort((a, b) => {       //тут пощупают sort, причем в обратном порядке
-    if(a.points > b.points) return -1;
-    if(a.points === b.points) return 0;
-    if(a.points < b.points) return 1;
-})
+gamersRating.sort((a, b) => b.points - a.points)
 console.log(gamersRating);
 let userName = prompt("Введите имя игрока");
 let index = gamersRating.findIndex((item) => item.name === userName);//тут можно через find или findIndex
-
-if(index){
-    alert(`user: ${gamersRating[index].name}, points: ${gamersRating[index].points}, rating: ${index}`);
+if(index !== -1){
+    alert(`user: ${gamersRating[index].name}, points: ${gamersRating[index].points}, rating: ${index + 1}`);
 } else {
     alert('User not found');
 }
