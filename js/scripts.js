@@ -1,6 +1,13 @@
 const maskPhone = (selector, masked = '__.__.____') => {
     const elems = document.querySelectorAll(selector);
-
+    // const isNumber = (number) => {
+    //     return !isNaN(parseFloat(number)) && isFinite(number);
+    // }
+    // const mask = (event) => {
+    //     const targetInput = event.target;
+    //     const newValue = targetInput.value;
+    //
+    // }
     function mask(event) {
         const keyCode = event.keyCode;
         const template = masked,
@@ -36,3 +43,8 @@ const maskPhone = (selector, masked = '__.__.____') => {
     }
 }
 maskPhone('#dataMask')
+const arr = [
+    [1, 2, 3],
+    [6, 5, 4]
+];
+console.log(arr[0])
